@@ -15,10 +15,13 @@ app.use(cors());
 app.use('/posts', postRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://chuqij4:chuqij4@cluster0.k1zt0hu.mongodb.net/';
-const PORT = process.env.PORT|| 8080;
+const PORT = process.env.PORT || 8080;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`)))
+mongoose.connect(CONNECTION_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}).then(() => app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`)))
   .catch((error) => console.log(error.message));
 
 //mongoose.set('useFindAndModify', false);
